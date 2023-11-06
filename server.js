@@ -4,6 +4,7 @@ const path = require('path');
 const app = express();
 const PORT = 3001
 const notes = require('./routes/notes.js')
+
 //makes static site public folder
 app.use(express.static("public"));
 
