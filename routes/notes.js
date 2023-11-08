@@ -26,10 +26,9 @@ router.post('/', (req, res) => {
 //BONUS: api DELETE request
 router.delete(`/:id`, (req, res) => {
     console.log('DELETE request api/notes');
-    const id = req.params.id
-    const idToDel = db.find((eL) => eL.id === id); 
-    const index = db.indexOf(idToDel);
-    db.splice(index, 0);
+    const id = parseInt(req.params.id)
+    const idToDel = db.findIndex(note => note.id === id); 
+    db.splice(idToDel, 1);
     fs.writeFile('./db/db.json', JSON.stringify(db), (err) => {
         err ? console.log(err) : res.json('Deleted!')
     });
