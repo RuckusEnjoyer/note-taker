@@ -53,6 +53,14 @@ const deleteNote = (id) =>
     }
   });
 
+const patchNote = (id) =>
+  fetch(`/api/notes/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+
 const renderActiveNote = () => {
   hide(saveNoteBtn);
   hide(clearBtn);

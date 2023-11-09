@@ -35,6 +35,20 @@ router.delete(`/:id`, (req, res) => {
 
 });
 
+//Personal Challenge: api PATCH request
+router.patch(`/:id`, (req, res) => {
+    console.log('patch request')
+    const id = parseInt(req.params.id);
+    const idToPatch = db.findIndex(note => note.id === id);
+    const data = JSON.parse(fs.readFileSync(db));
+    if (idToPatch !== -1) {
+        data[idToPatch] = {...data[index], ...req.body};
+        fs.writeFileSync('./db/db.json', JSON.stringify(data), (err) => {
+            err ? console.log(err) : res.json('Deleted!')
+        });
+    }
+})
+
 
 //exporting...
 module.exports = router;
